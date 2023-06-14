@@ -42,7 +42,7 @@ function MyComponent() {
   const logoUrl = 'https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png';
   const fetchData = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/pokemon/');
+      const response = await fetch('https://akloeapi.fly.dev/pokemon/');
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
@@ -168,7 +168,7 @@ function PokemonByType() {
 
   const fetchTypes = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/types/');
+      const response = await fetch('https://akloeapi.fly.dev/types/');
       const jsonData = await response.json();
       setTypes(jsonData);
     } catch (error) {
@@ -178,7 +178,7 @@ function PokemonByType() {
 
   const fetchPokemonsByType = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/type/${type}/`);
+      const response = await fetch(`https://akloeapi.fly.dev/type/${type}/`);
       const jsonData = await response.json();
       setPokemons(jsonData);
     } catch (error) {
@@ -271,7 +271,7 @@ const PokemonByLocation = () => {
 
   const fetchPokemonByLocation = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/location/${pokemonName}/`);
+      const response = await fetch(`https://akloeapi.fly.dev/location/${pokemonName}/`);
       const jsonData = await response.json();
       setLocationAreas(jsonData);
     } catch (error) {
@@ -394,7 +394,7 @@ const MoveSearch = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://127.0.0.1:8000/hm/${moveId}/`);
+      const response = await fetch(`https://akloeapi.fly.dev/hm/${moveId}/`);
       const jsonData = await response.json();
       setPokemons(jsonData);
     } catch (error) {
