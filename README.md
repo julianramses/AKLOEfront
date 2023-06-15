@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+#FRONT DE AKLOEapi
+El front de AKLOEapi está hecho en React.js, suponiendo que está instalado React
+La solución se hizo de la siguiente manera:
+- El front más que nada consume las request hechas en base a las funcionalidades requeridas para este proyecto, ya que la lógica se realizó primordialmente en los endpoints de la API.
+- Se utilizó mui.com
+- La instalación está en la página https://mui.com/material-ui/getting-started/installation/#npm.
+- El Front se realizó realizando fetches a la API
+- La aplicación hecha tiene un menú en el lado izquierdo, el cual contiene las funcionalidades exigidas en el desafío.
+  - En Main Menu se muestra el logo y el nombre de la aplicación
+  - ✨Pokemon Filter by letter C✨ es la funcionalidad que muestra los pokemones filtrados con la letra C y un conteo de éstos.
+  - ✨Pokemon Filter by Type✨ es la funcionalidad que muestra los pokemones filtrados por el tipo de pokemon.
+  - ✨Where can i find?✨ es la funcionalidad de dónde puedo encontrar un pokemon, para ésto se ingresa por user input el nombre del pokemon y se muestran las locaciones para encontrarlos. (En un comienzo sólo era pikachu pero se adaptó para todos los pokemones)
+  - ✨Pokemon filter by Hidden Machines!✨ es la funcionalidad que filtra pokemones por Hidden machines.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Para el uso de la aplicación, se debe clonar el repositorio con:
 
-## Available Scripts
+```sh
+git clone https://github.com/nombre-de-usuario/akloe-frontend.git](https://github.com/julianramses/AKLOEfront.git
+```
 
-In the project directory, you can run:
+Navega hacia el directorio del proyecto
+```sh
+cd akloe-frontend
+```
+Instala las dependencias del proyecto
+```sh
+npm install
+```
+Después de instalar, ejecuta la aplicación.
+```sh
+npm start
+```
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Una breve explicación del codigo sería:
+```sh
+ const response = await fetch('https://akloeapi.fly.dev/pokemon/');
+```
+Siendo 
+```sh
+ 'https://akloeapi.fly.dev/pokemon/' 
+```
+La url del la API Realizada anteriormente.
+Lo que logra esto es que, basado en la Lógica de Front, podemos crear variables para trabajar con ellas y hacer el llamado en las vistas de nuestro proyecto, como por ejemplo:
+```sh
+};
+  const logoUrl = 'https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png';
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://akloeapi.fly.dev/pokemon/');
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const countTotalPokemons = () => {
+    return data.length;
+  };
+```
+Consumiendo los nombres de los pokemones con la letra C, previamente filtrado.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+  const countTotalPokemons = () => {
+    return data.length;
+  };
+```
+Luego, dentro de los estilos de Javascript, contamos todos los Pokemones.
+```sh
+<div style={{ textAlign: 'center' }}>
+        <div style={styles.mainPage}>
+        <div style={styles.logoContainer}>
+          <img src={logoUrl} alt="Pokemon Logo" style={styles.logo} />
+        </div>
+        <h1 style={styles.title}>Welcome to the Pokemon API</h1>
+        <p>Total Pokemons: {countTotalPokemons()}</p>
+        <div style={styles.mainPage}></div>
+        <h1>Pokemon List with the Letter C</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {data.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                backgroundColor: '#f2f2f2',
+                padding: '10px',
+                margin: '10px',
+                borderRadius: '5px',
+                width: '200px',
+                textAlign: 'center',
+              }}
+            >
+              <img
+                src={item.image_url}
+                alt={item.name}
+                style={{ width: '100px', height: '100px', marginBottom: '10px' }}
+              />
+              <h3>{item.name}</h3>
+            </div>
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+```
+Aquí se muestran todos los nombres
+```sh
+<h3>{item.name}</h3>
+```
 
-### `npm test`
+Happy Coding!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
