@@ -1,4 +1,5 @@
 #FRONT DE AKLOEapi
+
 El front de AKLOEapi está hecho en React.js, suponiendo que está instalado React
 La solución se hizo de la siguiente manera:
 - El front más que nada consume las request hechas en base a las funcionalidades requeridas para este proyecto, ya que la lógica se realizó primordialmente en los endpoints de la API.
